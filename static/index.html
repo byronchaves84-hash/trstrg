@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b0c12"><meta name="description" content="Centro de control Moorttys Voice para TikTok LIVE y YouTube LIVE.">
+<link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/static/icon.svg" type="image/svg+xml"><link rel="stylesheet" href="/static/style.css">
+<title>Moorttys Voice</title>
+</head>
+<body>
+<div class="app-shell">
+  <header class="topbar"><div class="brand"><div class="brand-mark">M<span>•</span></div><div><div class="brand-name">MOORTTYS <b>VOICE</b></div><div class="brand-sub">TU LIVE · TU VOZ · TU ESTUDIO</div></div></div><button id="installBtn" class="btn ghost hidden">＋ Instalar</button></header>
+  <main>
+    <section class="hero"><div><div class="eyebrow">CENTRO DE CONTROL</div><h1>Que tu directo<br><span>hable por ti.</span></h1><p>Alertas, chat y bienvenida por voz desde el celular.</p></div><div class="hero-orb"><div class="orb-core"><span>♫</span></div><i></i><i></i><i></i></div></section>
+    <section class="status-card card"><div class="status-line"><div><span class="status-dot" id="statusDot"></span><span id="statusLabel">LISTO</span></div><span class="pill" id="platformPill">TIKTOK LIVE</span></div><p id="statusDetail">Configura la conexión y pulsa Conectar.</p><div class="action-row"><button id="connectBtn" class="btn primary">▶ Conectar LIVE</button><button id="disconnectBtn" class="btn secondary" disabled>■ Detener</button></div></section>
+    <div class="stats-grid"><div class="stat card"><span>EVENTOS</span><strong id="eventCount">0</strong><small>recibidos en esta sesión</small></div><div class="stat card"><span>PLATAFORMAS</span><strong>02</strong><small>TikTok + YouTube</small></div></div>
+    <section class="card settings-card"><div class="section-head"><div><div class="eyebrow">01 / CONEXIÓN</div><h2>Tu plataforma</h2></div><span class="section-icon">⌁</span></div>
+      <label class="field-label" for="platform">Plataforma</label><select id="platform"><option>TikTok LIVE</option><option>YouTube LIVE</option></select>
+      <div id="tiktokFields"><label class="field-label" for="tiktokUsername">Usuario de TikTok</label><input id="tiktokUsername" placeholder="@tuusuario" autocomplete="off"><p class="hint">Conecta con el usuario que está transmitiendo. No pegues contraseñas ni cookies aquí.</p></div>
+      <div id="youtubeFields" class="hidden"><label class="field-label" for="apiKey">YouTube Data API key</label><input id="apiKey" type="password" placeholder="Introduce tu API key" autocomplete="off"><label class="field-label" for="channelId">ID del canal</label><input id="channelId" placeholder="UC…" autocomplete="off"><p class="hint">La clave se guarda en la configuración del servidor donde alojes esta app. No la publiques ni compartas el servidor.</p></div>
+    </section>
+    <section class="card settings-card"><div class="section-head"><div><div class="eyebrow">02 / VOZ INTELIGENTE</div><h2>Cómo habla Moorttys</h2></div><span class="section-icon">♫</span></div>
+      <div class="toggle-row"><div><b>Leer mensajes del chat</b><small>Voz para comentarios entrantes</small></div><label class="switch"><input type="checkbox" id="readComments"><span></span></label></div>
+      <div class="toggle-row"><div><b>Decir el nombre del usuario</b><small>Apágalo para leer solo el mensaje</small></div><label class="switch"><input type="checkbox" id="speakAuthor"><span></span></label></div>
+      <div class="toggle-row"><div><b>Solo el mensaje</b><small>No anuncia el nombre antes del texto</small></div><label class="switch"><input type="checkbox" id="soloMessage"><span></span></label></div>
+      <div class="toggle-row"><div><b>Leer regalos</b><small>Eventos de regalos de TikTok</small></div><label class="switch"><input type="checkbox" id="readGifts"><span></span></label></div>
+      <div class="toggle-row"><div><b>Leer seguidores y compartidos</b><small>Eventos sociales de TikTok</small></div><label class="switch"><input type="checkbox" id="readSocialEvents"><span></span></label></div>
+      <label class="field-label" for="voice">Voz</label><select id="voice"><option value="es-MX-DaliaNeural">Dalia · Español México</option><option value="es-MX-JorgeNeural">Jorge · Español México</option><option value="es-ES-ElviraNeural">Elvira · Español España</option><option value="es-ES-AlvaroNeural">Álvaro · Español España</option></select>
+      <button class="btn secondary full" id="testVoice">▶ Probar voz</button>
+    </section>
+    <section class="card settings-card"><div class="section-head"><div><div class="eyebrow">03 / ENTRADAS</div><h2>Bienvenidas y sonidos</h2></div><span class="section-icon">✦</span></div>
+      <div class="toggle-row"><div><b>Sonido de entrada</b><small>Al detectar que alguien se une</small></div><label class="switch"><input type="checkbox" id="joinAlertsEnabled"><span></span></label></div>
+      <div class="toggle-row"><div><b>Notificar quién entra</b><small>Mostrar la entrada en el registro</small></div><label class="switch"><input type="checkbox" id="joinNotificationsEnabled"><span></span></label></div>
+      <div class="toggle-row"><div><b>Bienvenida hablada</b><small>Frase automática con el nombre</small></div><label class="switch"><input type="checkbox" id="joinWelcomeEnabled"><span></span></label></div>
+      <label class="field-label" for="joinWelcomeTemplate">Frase de bienvenida</label><input id="joinWelcomeTemplate" value="¡Bienvenido al directo, {nombre}!" placeholder="¡Bienvenido, {nombre}!"><p class="hint">Usa <code>{nombre}</code> donde quieras insertar el nombre.</p>
+      <label class="field-label" for="joinSoundVolume">Volumen de los sonidos <span id="volumeValue">75%</span></label><input id="joinSoundVolume" type="range" min="0" max="100" value="75">
+      <div class="sound-row"><div><b>Suscriptor confirmado</b><small>Si el evento lo confirma</small></div><button class="btn mini" data-sound="subscriber">▶ Probar</button></div><div class="sound-row"><div><b>Visitante no suscrito</b><small>Solo si el dato está confirmado</small></div><button class="btn mini" data-sound="visitor">▶ Probar</button></div><div class="sound-row"><div><b>Sin verificar</b><small>Cuando TikTok no informa el estado</small></div><button class="btn mini" data-sound="unknown">▶ Probar</button></div>
+      <label class="field-label" for="soundUpload">Subir sonido propio (WAV, MP3 u OGG)</label><input id="soundUpload" type="file" accept="audio/wav,audio/mpeg,audio/ogg,.wav,.mp3,.ogg"><p class="hint">Después de subirlo, selecciona el sonido en la lista correspondiente.</p>
+      <label class="field-label" for="subscriberSound">Sonido de suscriptor</label><select id="subscriberSound" class="sound-select"><option value="">Predeterminado</option></select><label class="field-label" for="visitorSound">Sonido de visitante</label><select id="visitorSound" class="sound-select"><option value="">Predeterminado</option></select><label class="field-label" for="unknownSound">Sonido sin verificar</label><select id="unknownSound" class="sound-select"><option value="">Predeterminado</option></select>
+    </section>
+    <section class="card settings-card store-card" id="storeSection"><div class="section-head"><div><div class="eyebrow">04 / TIENDA</div><h2>Pack de sonidos</h2></div><span class="section-icon">✦</span></div>
+      <p class="hint">Apoya el proyecto y amplía tu directo con sonidos exclusivos. Las funciones actuales de MOORTTYS VOICE siguen siendo gratuitas.</p>
+      <div class="store-product"><div><b id="packName">Pack de sonidos de bienvenida</b><p>Sonidos y efectos para personalizar las entradas de tu LIVE.</p></div><strong id="packPrice">$2.99</strong></div>
+      <a id="packBuyBtn" class="btn primary full store-buy hidden" href="#" target="_blank" rel="noopener noreferrer">Comprar pack</a>
+      <p id="storeStatus" class="hint" aria-live="polite">La tienda está en preparación. El pago seguro se habilitará cuando se configure el enlace de compra.</p>
+    </section>
+    <section class="card log-card"><div class="section-head"><div><div class="eyebrow">05 / ACTIVIDAD</div><h2>Registro del LIVE</h2></div><button id="clearLog" class="btn mini">Limpiar</button></div><div id="eventLog" class="event-log"><div class="empty-state">Los eventos aparecerán aquí cuando conectes el directo.</div></div></section>
+    <section class="save-row"><button id="saveBtn" class="btn primary full">Guardar configuración</button><span id="saveFeedback" class="feedback" aria-live="polite"></span></section>
+    <footer>MOORTTYS VOICE <span>·</span> PWA RESPONSIVE <span>·</span> Versión web inicial</footer>
+  </main>
+</div><div id="toast" class="toast" role="status"></div><script src="/static/app.js"></script>
+</body></html>

@@ -1,0 +1,19 @@
+MOORTTYS VOICE PWA — control de entradas y chat
+
+Cambios realizados:
+- Las entradas se siguen registrando una por una en el historial.
+- Los saludos de bienvenida se agrupan en una ventana de 2,2 segundos.
+- Si entran más de tres personas en el mismo grupo, la voz anuncia la cantidad en lugar de leer una bienvenida por persona.
+- Los sonidos de entrada tienen un límite de frecuencia de un sonido cada 4 segundos; una entrada de suscriptor confirmado tiene preferencia durante esa ventana.
+- La cola de voz limita los mensajes normales pendientes y descarta mensajes adicionales cuando el chat está saturado, en lugar de acumular retraso indefinidamente.
+- Las alertas prioritarias pasan delante de los mensajes normales.
+- Cuando se hayan omitido mensajes por saturación, la voz anuncia un resumen al vaciarse la cola.
+- Los eventos históricos cargados al abrir la PWA ya no reproducen sonidos antiguos.
+- Se actualizó la caché del service worker a v3 para que el navegador recargue el código nuevo.
+
+Archivos fuente modificados:
+- app.py
+- static/app.js
+- static/sw.js
+
+TikTok LIVE, YouTube LIVE, ajustes, registro y sonidos existentes se han conservado. Las pruebas ejecutadas verificaron sintaxis Python/JavaScript y el agrupamiento de cinco entradas en un solo anuncio, manteniendo los cinco eventos en el registro.
